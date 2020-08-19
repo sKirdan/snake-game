@@ -1,10 +1,13 @@
 import time
 
 
-class Animation:
-    global From
-    global To
-    global Widget
+# base abstract Animation class
+
+class Animation():
+
+    From: object
+    To: object
+    Widget: object
     Duration: int
     _EndTime: int
     current_time_millis = lambda: int(round(time.time() * 1000))
@@ -25,7 +28,9 @@ class Animation:
         return self
 
     def start(self):
-        self._EndTime = self.current_time_millis() + self.Duration
+
+        self._EndTime = Animation.current_time_millis() + self.Duration
+
 
     def update(self):
         pass

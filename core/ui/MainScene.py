@@ -71,3 +71,4 @@ class MainScene(Scene):
         self.addToScene(sun)
 
         sun.animator.move(tree5)
+

@@ -1,14 +1,23 @@
 from lib.animations.Animation import Animation
 
 class AnimationMove(Animation):
-    def update(self):
-        leftTime = self.current_time_millis() - self._EndTime
+
+
+    def update(self) -> bool:
+        fps = 60
+        leftTime = self._EndTime - Animation.current_time_millis()
+        frames = (self.Duration * fps) / 1000
+        print(leftTime)
         if leftTime > 0:
-            deltX = (self.To.box.offsetX - self.From.box.offsetX) / leftTime
-            deltY = (self.To.box.offsetY - self.From.box.offsetY) / leftTime
+            deltX = (self.To.box.offsetX - self.From.box.offsetX) / frames
+            deltY = (self.To.box.offsetY - self.From.box.offsetY) / frames
+            print("delt")
+            print(self.From.box.offsetX)
             self.Widget.box.offsetX += deltX
             self.Widget.box.offsetY += deltY
-            self.From = self.Widget
-
+            return True
         else:
-            del self
+            self.Widget.box.offsetX = self.To.box.offsetX
+            self.Widget.box.offsetY = self.To.box.offsetY
+            return False
+

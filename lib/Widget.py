@@ -42,10 +42,13 @@ class Widget(Sprite):
         self.image = pygame.transform.scale(self.image, (self.box.w, self.box.h))
 
     def clone(self) -> "Widget":
-        newWidget = Widget()
-        newWidget.image = self.image
-        newWidget.box = self.box.clone()
-        newWidget.rect = newWidget.box
+        cloned = Widget()
+        cloned.image = self.image
+        cloned.box = self.box.clone()
+        cloned.rect = cloned.box
+
         for child in self.childs:
-            newWidget.addChild(child.clone())
-        return newWidget
+            cloned.addChild(child.clone())
+
+        return cloned
+
