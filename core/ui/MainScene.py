@@ -70,5 +70,8 @@ class MainScene(Scene):
         self.addToScene(tree5)
         self.addToScene(sun)
 
-        sun.animator.move(tree5)
+        self.sun = sun
+
+    def test(self):
+        self.sun.animator.move((1, 0))
 

@@ -1,30 +1,39 @@
 import pygame
+
 from core.ui.MainScene import MainScene
-from lib.Widget import Widget
+from lib.Engine import Engine
 from lib.animations.Animation import Animation
 
+
 class GameCycle:
+    currentScene: MainScene = None
 
-	def start():
-		pygame.init()		
+    @staticmethod
+    def start():
+        Engine.init()
 
-		clock = pygame.time.Clock()
-		display = pygame.display.set_mode((500, 500))
+        display = pygame.display.set_mode((500, 500))
 
-		currentScene = MainScene(display)
+        pygame.time.wait(2000)
 
-		while not GameCycle.gameEnd():
-			currentScene.render()
-			clock.tick(60)
+        currentScene = MainScene(display)
+        GameCycle.currentScene = currentScene
+        time = Animation.current_time_millis()
+        while not GameCycle.gameEnd():
+            print(str(Animation.current_time_millis() - time) + " mls")
+            time = Animation.current_time_millis()
+            currentScene.render()
+            Engine.performTick()
 
-		pygame.quit()
-		quit()
+        pygame.quit()
+        quit()
 
-	def gameEnd():
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				return True
-			if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-				return True
-
-
+    @staticmethod
+    def gameEnd():
+        for event in pygame.event.get():
+            if GameCycle.currentScene and pygame.key.get_pressed()[pygame.K_0]:
+                GameCycle.currentScene.test()
+            if event.type == pygame.QUIT:
+                return True
+            if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                return True

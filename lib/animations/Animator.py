@@ -1,6 +1,6 @@
-
 from lib.animations.Animation import Animation
 from lib.animations.AnimationMove import AnimationMove
+
 
 class Animator:
     widget: object
@@ -22,9 +22,6 @@ class Animator:
         target.box.offsetX = pos[0]
         target.box.offsetY = pos[1]
         fw = self.widget.clone()
-        self.currentAnimation = AnimationMove(self.widget).From(fw).To(target).Duration(5000)
+        self.currentAnimation = AnimationMove(self.widget).From(fw).To(target).Duration(1000 * 5)
 
         self.currentAnimation.start()
-
-
-

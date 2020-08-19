@@ -4,7 +4,6 @@ import time
 # base abstract Animation class
 
 class Animation():
-
     From: object
     To: object
     Widget: object
@@ -28,9 +27,7 @@ class Animation():
         return self
 
     def start(self):
-
         self._EndTime = Animation.current_time_millis() + self.Duration
-
 
     def update(self):
         pass
