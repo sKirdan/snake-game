@@ -17,11 +17,11 @@ class Animator:
             if not self.currentAnimation.update():
                 self.currentAnimation = None
 
-    def move(self, pos: ()):
-        target = self.widget.clone()
-        target.box.offsetX = pos[0]
-        target.box.offsetY = pos[1]
-        fw = self.widget.clone()
-        self.currentAnimation = AnimationMove(self.widget).From(fw).To(target).Duration(1000 * 5)
+    def moveRelative(self, pos: (), mls: int):
+        pointB = self.widget.clone()
+        pointB.box.offsetX = pos[0]
+        pointB.box.offsetY = pos[1]
+        pointA = self.widget.clone()
+        self.currentAnimation = AnimationMove(self.widget).From(pointA).To(pointB).Duration(mls)
 
         self.currentAnimation.start()
