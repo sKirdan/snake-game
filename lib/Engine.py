@@ -3,7 +3,7 @@ from pygame.time import Clock
 
 
 class Engine:
-    fps: int = 200
+    fps: int = 60
     clock: Clock
 
     @staticmethod
