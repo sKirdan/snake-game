@@ -18,6 +18,8 @@ class Animator:
                 self.currentAnimation = None
 
     def moveRelative(self, pos: (), mls: int):
+        if self.currentAnimation:
+            return
         pointB = self.widget.clone()
         pointB.box.offsetX = pos[0]
         pointB.box.offsetY = pos[1]

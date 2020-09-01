@@ -1,5 +1,6 @@
 import pygame
 
+from core.controller.SnakeController import SnakeController
 from core.ui.GameScene import GameScene
 from lib.Engine import Engine
 
@@ -13,9 +14,11 @@ class GameCycle:
         display = pygame.display.set_mode((500, 500))
 
         currentScene = GameScene(display)
+        snakeController = SnakeController(currentScene)
         while not GameCycle.gameEnd():
             currentScene.render()
             Engine.performTick()
+            snakeController.test()
 
         pygame.quit()
 

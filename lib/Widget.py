@@ -5,9 +5,9 @@ from pygame.color import Color
 from lib.Box import Box
 from lib.animations.Animator import Animator
 
+box: Box
 
 class Widget(Sprite):
-    box: Box
     childs: []
     parent: "Widget"
     animator: Animator
